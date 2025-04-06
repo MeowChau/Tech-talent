@@ -1,25 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Layout, ConfigProvider } from 'antd';
+import Header from './components/Header';
+import HomePage from './pages/HomePage';
+import JobPostPage from './pages/JobPostPage';
+import JobDetailPage from './pages/JobDetailPage';
+
+const { Content } = Layout;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ConfigProvider theme={{ token: { colorPrimary: '#1890ff' } }}>
+      <Router>
+        <Layout style={{ minHeight: '100vh' }}>
+          <Header />
+          <Content style={{ padding: '24px 50px', marginTop: 64 }}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/post-job" element={<JobPostPage />} />
+              <Route path="/jobs/:id" element={<JobDetailPage />} />
+            </Routes>
+          </Content>
+        </Layout>
+      </Router>
+    </ConfigProvider>
   );
 }
 
