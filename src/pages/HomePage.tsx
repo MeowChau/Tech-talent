@@ -3,8 +3,8 @@ import { Row, Col, Input, Spin, Typography } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { motion } from 'framer-motion';
 import JobCard from '../components/JobCard';
-import { getJobs } from '../api/jobs';
-import { Job } from '../types/job.d';
+import { getJobs } from '../api/job'; // Fixed import path (changed from '../api/job')
+import { Job } from '../types/job.d'; // Fixed import path (changed from '../types/job.d')
 
 const { Title } = Typography;
 
@@ -28,11 +28,18 @@ const HomePage = () => {
     fetchJobs();
   }, []);
 
-  const filteredJobs = jobs.filter(job =>
-    job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    job.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    job.location.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredJobs = jobs.filter(job => {
+    const searchTermLower = searchTerm.toLowerCase();
+    const jobName = job.name?.toLowerCase() || '';
+    const companyName = job.company?.companyName?.toLowerCase() || '';
+    const cities = job.city || [];
+
+    return (
+      jobName.includes(searchTermLower) ||
+      companyName.includes(searchTermLower) ||
+      cities.some(city => city.toLowerCase().includes(searchTermLower))
+    );
+  });
 
   return (
     <div style={{ maxWidth: 1200, margin: '0 auto', padding: '24px 16px' }}>
@@ -48,11 +55,12 @@ const HomePage = () => {
       </Title>
       
       <Input
-        placeholder="Search jobs by title, company or location"
+        placeholder="Search jobs by name, company or city"
         prefix={<SearchOutlined />}
         size="large"
         style={{ marginBottom: 24 }}
         onChange={(e) => setSearchTerm(e.target.value)}
+        value={searchTerm}
       />
 
       {loading ? (

@@ -35,6 +35,10 @@ interface Company {
     createAt: string;
     updateAt: string;
     company?: Company; // Thông tin công ty (join từ API)
+    city?: string[];
+  tags?: string[];
+  requirements?: string[]; // Đã thêm thuộc tính requirements
+  benefits?: string[]; // Đã thêm thuộc tính benefits
   }
   
   interface CV {
