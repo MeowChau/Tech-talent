@@ -1,6 +1,6 @@
-import { Card, Tag, Typography, Button, Space } from 'antd';
+import { Card, Tag, Typography, Button, Space, Tooltip } from 'antd';
 import { EnvironmentOutlined, DollarOutlined, ClockCircleOutlined } from '@ant-design/icons';
-import { Job } from '../types/job';
+import { Job } from '../types/job.d';
 
 const { Text, Title } = Typography;
 
@@ -37,15 +37,17 @@ const JobCard = ({ job }: { job: Job }) => {
         {job.isRemote && <Tag color="green">Remote</Tag>}
       </Space>
       
-      <Text 
-        ellipsis={{ rows: 2 }} 
-        style={{ 
-          display: 'block',
-          color: 'rgba(0,0,0,0.65)'
-        }}
-      >
-        {job.description}
-      </Text>
+      <Tooltip title={job.description}>
+        <Text 
+          ellipsis 
+          style={{ 
+            display: 'block',
+            color: 'rgba(0,0,0,0.65)'
+          }}
+        >
+          {job.description}
+        </Text>
+      </Tooltip>
     </Card>
   );
 };
