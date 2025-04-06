@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Row, Col, Input, Spin, Card, Typography, Space } from 'antd';
+import { Row, Col, Input, Spin, Typography } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { motion } from 'framer-motion';
 import JobCard from '../components/JobCard';
 import { getJobs } from '../api/jobs';
-import { Job } from '../types/job';
+import { Job } from '../types/job.d';
 
 const { Title } = Typography;
 
