@@ -2,7 +2,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Input, Button, notification } from 'antd';
-import { loginAdmin } from '../../services/jobService';
+import { loginAdmin } from '../../api/api';
 
 interface FormValues {
     email: string;

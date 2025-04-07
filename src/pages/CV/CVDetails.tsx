@@ -12,6 +12,10 @@ const CVDetails: React.FC = () => {
 
     useEffect(() => {
         const loadCV = async () => {
+            if (!id) {
+                console.error('ID is undefined');
+                return;
+            }
             const cvData = await fetchCVById(id);
             setCV(cvData);
         };

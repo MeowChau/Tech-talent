@@ -1,10 +1,18 @@
 // src/pages/Company/CompanyList.tsx
 import React, { useEffect, useState } from 'react';
 import { Table, Button, notification } from 'antd';
-import { deleteCompany, fetchCompanies } from '../../api/api';
+import deleteCompany, { fetchCompanies } from '../../api/api';
 
 const CompanyList: React.FC = () => {
-    const [companies, setCompanies] = useState([]);
+    interface Company {
+        id: string;
+        companyName: string;
+        phone: string;
+        quantityPeople: number;
+        website: string;
+    }
+
+    const [companies, setCompanies] = useState<Company[]>([]);
 
     useEffect(() => {
         const loadCompanies = async () => {

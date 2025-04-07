@@ -1,7 +1,8 @@
 // src/pages/Job/JobManagement.tsx
 import React, { useEffect, useState } from 'react';
 import { Table, Button, Modal, Form, Input, Select, notification } from 'antd';
-import { fetchJobs, createJob, deleteJob, updateJob, fetchTags } from '../../api/api';
+import { fetchJobs, createJob, deleteJob, updateJob } from '../../api/api';
+import fetchTags from '../../api/api';
 import { Option } from 'antd/es/mentions';
 import { Job } from '../../models/Job';
 
@@ -10,7 +11,7 @@ const JobManagement: React.FC = () => {
     const [visible, setVisible] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
     const [currentJob, setCurrentJob] = useState<Job | null>(null);
-    const [tags, setTags] = useState([]);
+    const [tags, setTags] = useState<{ key: string; value: string }[]>([]);
 
     useEffect(() => {
         const loadJobs = async () => {
@@ -19,8 +20,8 @@ const JobManagement: React.FC = () => {
         };
 
         const loadTags = async () => {
-            const tagsData = await fetchTags();
-            setTags(tagsData);
+            const response = await fetchTags({});
+            setTags(response.data);
         };
 
         loadJobs();
@@ -76,7 +77,7 @@ const JobManagement: React.FC = () => {
                 <Table.Column title="Trạng Thái" dataIndex="status" render={(status) => (status ? 'Bật' : 'Tắt')} />
                 <Table.Column
                     title="Hành Động"
-                    render={(text, record) => (
+                    render={(text, record: Job) => (
                         <>
                             <Button onClick={() => showJobModal(record)}>Chỉnh Sửa</Button>
                             <Button onClick={() => handleDelete(record.id)} danger>Xóa</Button>
@@ -91,7 +92,7 @@ const JobManagement: React.FC = () => {
                 onCancel={() => setVisible(false)}
                 footer={null}
             >
-                <Form initialValues={currentJob} onFinish={handleFinish}>
+                <Form initialValues={currentJob || undefined} onFinish={handleFinish}>
                     <Form.Item name="name" label="Tên Job" rules={[{ required: true }]}>
                         <Input placeholder="Tên Job" />
                     </Form.Item>
@@ -110,8 +111,8 @@ const JobManagement: React.FC = () => {
                     </Form.Item>
                     <Form.Item name="status" label="Trạng Thái">
                         <Select>
-                            <Option value={true}>Bật</Option>
-                            <Option value={false}>Tắt</Option>
+                            <Option value="true">Bật</Option>
+                            <Option value="false">Tắt</Option>
                         </Select>
                     </Form.Item>
                     <Button type="primary" htmlType="submit">{isEditing ? 'Cập Nhật' : 'Tạo'}</Button>

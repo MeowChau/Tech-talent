@@ -1,7 +1,8 @@
-// src/pages/Home/Home.tsx
 import React, { useEffect, useState } from 'react';
 import { Button, Input, Select, List, Typography } from 'antd';
-import { fetchCities, fetchCompanies, fetchTags } from '../../api/api';
+import fetchTags from '../../api/api';
+import fetchCities from '../../api/api';
+import { fetchCompanies } from '../../api/api';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -9,29 +10,42 @@ const { Option } = Select;
 const { Title } = Typography;
 
 const Home: React.FC = () => {
-    const [companies, setCompanies] = useState([]);
-    const [tags, setTags] = useState([]);
-    const [cities, setCities] = useState([]);
-    const [searchKeyword, setSearchKeyword] = useState('');
+    const [companies, setCompanies] = useState<Company[]>([]);
+    const [tags, setTags] = useState<Tag[]>([]);
+    const [cities, setCities] = useState<City[]>([]);
     const [selectedCity, setSelectedCity] = useState('');
+    const [searchKeyword, setSearchKeyword] = useState(''); // Thêm trạng thái cho searchKeyword
+
+    interface City {
+        key: string;
+        value: string;
+    }
+    interface Company {
+        id: string;
+        companyName: string;
+    }
+    interface Tag {
+        value: string;
+    }
 
     const loadData = async () => {
         const [companiesData, tagsData, citiesData] = await Promise.all([
             fetchCompanies(),
-            fetchTags(),
-            fetchCities(),
+            fetchTags({}), // Pass appropriate arguments if required
+            fetchCities({}), // Pass appropriate arguments if required
         ]);
-        setCompanies(companiesData);
-        setTags(tagsData);
-        setCities(citiesData);
+        setCompanies(companiesData); // Set the companies data directly
+        setTags(tagsData.data); // Extract data from Axios response
+        setCities(citiesData.data); // Extract data from Axios response
     };
 
     useEffect(() => {
-        loadData();
+        loadData(); // Gọi hàm loadData khi component được mount
     }, []);
 
-    const handleSearch = () => {
-        window.location.href = `/search?keyword=${searchKeyword}&city=${selectedCity}`;
+    const handleSearch = (tagValue?: string) => {
+        const keyword = tagValue || searchKeyword;
+        window.location.href = `/search?keyword=${keyword}&city=${selectedCity}`;
     };
 
     return (
@@ -54,7 +68,7 @@ const Home: React.FC = () => {
                             <Option key={city.key} value={city.value}>{city.value}</Option>
                         ))}
                     </Select>
-                    <Button type="primary" onClick={handleSearch}>Tìm Kiếm</Button>
+                    <Button type="primary" onClick={() => handleSearch()}>Tìm Kiếm</Button>
                 </div>
                 <Title level={4}>Kỹ Năng</Title>
                 <List

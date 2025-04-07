@@ -1,10 +1,20 @@
 // src/pages/CV/CVList.tsx
 import React, { useEffect, useState } from 'react';
+
 import { Table, Button, notification } from 'antd';
 import { fetchCVs, deleteCV, updateCVStatus } from '../../api/api';
 
+interface CV {
+    id: string;
+    name: string;
+    email: string;
+    phone: string;
+    createAt: string;
+    statusRead: boolean;
+}
+
 const CVList: React.FC = () => {
-    const [cvs, setCVs] = useState([]);
+    const [cvs, setCVs] = useState<CV[]>([]);
 
     useEffect(() => {
         const loadCVs = async () => {

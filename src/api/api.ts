@@ -4,28 +4,33 @@ import { Job } from '../models/Job';
 import { Company } from '../models/Company';
 import { CV } from '../models/CV';
 
-const BASE_URL = 'http://localhost:3001';
+const BASE_URL = 'http://localhost:3001'; // URL cho json-server
 
-// Tạo đối tượng axios với cấu hình mặc định
 const api = axios.create({
     baseURL: BASE_URL,
-    timeout: 1000,
+    timeout: 5000,
 });
 
 // Hàm đăng nhập admin
 export const loginAdmin = async (data: { email: string; password: string }) => {
-    const adminEmail = "admin@example.com";  // Email admin giả định
-    const adminPassword = "admin123";         // Mật khẩu admin giả định
+    const adminEmail = "admin@example.com";
+    const adminPassword = "admin123";
 
     if (data.email === adminEmail && data.password === adminPassword) {
         return {
             data: {
-                token: 'mockToken123', // Token giả định
+                token: 'mockToken123',
             },
         };
     } else {
         throw new Error("Invalid credentials");
     }
+};
+
+// Hàm tạo công ty mới
+export const createCompany = async (data: Company) => {
+    const response = await api.post('/companies', data);
+    return response.data;
 };
 
 // Job Services
@@ -87,3 +92,6 @@ export const updateCVStatus = async (id: string): Promise<void> => {
 export const deleteCV = async (id: string): Promise<void> => {
     await api.delete(`/cvs/${id}`);
 };
+
+// Xuất khẩu tất cả để có thể sử dụng trong các module khác
+export default api;
