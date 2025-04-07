@@ -6,62 +6,84 @@ import { CV } from '../models/CV';
 
 const BASE_URL = 'http://localhost:3001';
 
+// Tạo đối tượng axios với cấu hình mặc định
+const api = axios.create({
+    baseURL: BASE_URL,
+    timeout: 1000,
+});
+
+// Hàm đăng nhập admin
+export const loginAdmin = async (data: { email: string; password: string }) => {
+    const adminEmail = "admin@example.com";  // Email admin giả định
+    const adminPassword = "admin123";         // Mật khẩu admin giả định
+
+    if (data.email === adminEmail && data.password === adminPassword) {
+        return {
+            data: {
+                token: 'mockToken123', // Token giả định
+            },
+        };
+    } else {
+        throw new Error("Invalid credentials");
+    }
+};
+
 // Job Services
-export const fetchJobs = async () => {
-    const response = await axios.get<Job[]>(`${BASE_URL}/jobs`);
+export const fetchJobs = async (): Promise<Job[]> => {
+    const response = await api.get('/jobs');
     return response.data;
 };
 
-export const fetchJobById = async (id: string) => {
-    const response = await axios.get<Job>(`${BASE_URL}/jobs/${id}`);
+export const fetchJobById = async (id: string): Promise<Job> => {
+    const response = await api.get(`/jobs/${id}`);
     return response.data;
 };
 
-export const createJob = async (job: Job) => {
-    const response = await axios.post<Job>(`${BASE_URL}/jobs`, job);
+export const createJob = async (job: Job): Promise<Job> => {
+    const response = await api.post('/jobs', job);
     return response.data;
 };
 
-export const updateJob = async (id: string, job: Job) => {
-    const response = await axios.put<Job>(`${BASE_URL}/jobs/${id}`, job);
+export const updateJob = async (id: string, job: Job): Promise<Job> => {
+    const response = await api.put(`/jobs/${id}`, job);
     return response.data;
 };
 
-export const deleteJob = async (id: string) => {
-    await axios.delete(`${BASE_URL}/jobs/${id}`);
+export const deleteJob = async (id: string): Promise<void> => {
+    await api.delete(`/jobs/${id}`);
 };
 
 // Company Services
-export const fetchCompanies = async () => {
-    const response = await axios.get<Company[]>(`${BASE_URL}/companies`);
+export const fetchCompanies = async (): Promise<Company[]> => {
+    const response = await api.get('/companies');
     return response.data;
 };
 
-export const fetchCompanyById = async (id: string) => {
-    const response = await axios.get<Company>(`${BASE_URL}/companies/${id}`);
+export const fetchCompanyById = async (id: string): Promise<Company> => {
+    const response = await api.get(`/companies/${id}`);
     return response.data;
 };
 
 // CV Services
-export const fetchCVs = async () => {
-    const response = await axios.get<CV[]>(`${BASE_URL}/cvs`);
+export const fetchCVs = async (): Promise<CV[]> => {
+    const response = await api.get('/cvs');
     return response.data;
 };
 
-export const fetchCVById = async (id: string) => {
-    const response = await axios.get<CV>(`${BASE_URL}/cvs/${id}`);
+export const fetchCVById = async (id: string): Promise<CV> => {
+    const response = await api.get(`/cvs/${id}`);
     return response.data;
 };
 
-export const createCV = async (cv: CV) => {
-    const response = await axios.post<CV>(`${BASE_URL}/cvs`, cv);
+export const createCV = async (cv: CV): Promise<CV> => {
+    const response = await api.post('/cvs', cv);
     return response.data;
 };
 
-export const updateCVStatus = async (id: string) => {
-    await axios.patch(`${BASE_URL}/cvs/${id}`, { statusRead: true });
+export const updateCVStatus = async (id: string): Promise<void> => {
+    await api.patch(`/cvs/${id}`, { statusRead: true });
 };
 
-export const deleteCV = async (id: string) => {
-    await axios.delete(`${BASE_URL}/cvs/${id}`);
+export const deleteCV = async (id: string): Promise<void> => {
+    await api.delete(`/cvs/${id}`);
 };

@@ -2,7 +2,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Input, Button, notification } from 'antd';
-import { createCompany } from '../../services/jobService';
+import { createCompany } from '../../api/api'
 
 interface FormValues {
     companyName: string;
@@ -16,7 +16,17 @@ const EmployerSignup: React.FC = () => {
 
     const onSubmit = async (data: FormValues) => {
         try {
-            await createCompany(data);
+            await createCompany({
+                ...data,
+                id: '', // Provide a default or generated value
+                token: '', // Provide a default or generated value
+                address: '', // Provide a default or generated value
+                workingTime: '', // Provide a default or generated value
+                website: '', // Provide a default or generated value
+                quantityPeople: 0, // Provide a default or generated value
+                description: '', // Provide a default or generated value
+                detail: '', // Provide a default or generated value
+            });
             notification.success({ message: 'Đăng Ký Thành Công!' });
             window.location.href = '/admin/login';
         } catch (error) {
