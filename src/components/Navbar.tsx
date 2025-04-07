@@ -1,18 +1,22 @@
+// src/components/Navbar.tsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Menu } from 'antd';
 
 const Navbar: React.FC = () => {
     return (
-        <Menu mode="horizontal" style={{ backgroundColor: '#001529', color: '#fff' }}>
+        <Menu mode="horizontal">
             <Menu.Item key="home">
-                <Link to="/" style={{ color: '#fff' }}>Home</Link>
+                <Link to="/">Trang Chủ</Link>
             </Menu.Item>
             <Menu.Item key="companies">
-                <Link to="/companies" style={{ color: '#fff' }}>Companies</Link>
+                <Link to="/companies">Công Ty</Link>
+            </Menu.Item>
+            <Menu.Item key="jobs">
+                <Link to="/jobs">Các Công Việc</Link>
             </Menu.Item>
             <Menu.Item key="signup">
-                <Link to="/signup-employer" style={{ color: '#fff' }}>Become an Employer</Link>
+                <Link to="/signup-employer">Đăng Ký Nhà Tuyển Dụng</Link>
             </Menu.Item>
         </Menu>
     );
