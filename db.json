@@ -1,0 +1,98 @@
+{
+    "companies": [
+      {
+        "id": 1,
+        "companyName": "Công Ty A",
+        "phone": "0123456789",
+        "email": "contact@companya.com",
+        "password": "password123",
+        "token": "unique-access-token-1",
+        "address": "123 Đường ABC, Hà Nội",
+        "workingTime": "09:00 - 18:00",
+        "website": "www.companya.com",
+        "quantityPeople": 100,
+        "description": "Công ty chuyên về phát triển phần mềm.",
+        "detail": "Công ty A là một trong những doanh nghiệp hàng đầu trong lĩnh vực công nghệ thông tin tại Việt Nam."
+      },
+      {
+        "id": 2,
+        "companyName": "Công Ty B",
+        "phone": "0987654321",
+        "email": "contact@companyb.com",
+        "password": "password456",
+        "token": "unique-access-token-2",
+        "address": "456 Đường DEF, TP. Hồ Chí Minh",
+        "workingTime": "08:00 - 17:00",
+        "website": "www.companyb.com",
+        "quantityPeople": 50,
+        "description": "Công ty B cung cấp các giải pháp công nghệ.",
+        "detail": "Công ty B đã hoạt động hơn 10 năm và có nhiều dự án thành công."
+      }
+    ],
+    "cities": [
+      { "key": 1, "value": "Hà Nội" },
+      { "key": 2, "value": "TP. Hồ Chí Minh" },
+      { "key": 3, "value": "Đà Nẵng" }
+    ],
+    "tags": [
+      { "key": 1, "value": "Javascript" },
+      { "key": 2, "value": "Java" },
+      { "key": 3, "value": "Python" },
+      { "key": 4, "value": "React" },
+      { "key": 5, "value": "Node.js" }
+    ],
+    "jobs": [
+      {
+        "id": 1,
+        "idCompany": 1,
+        "name": "Lập trình viên Frontend",
+        "tags": ["Javascript", "React"],
+        "salary": 1500,
+        "description": "Phát triển giao diện người dùng cho ứng dụng web.",
+        "status": true,
+        "city": ["Hà Nội", "TP. Hồ Chí Minh"],
+        "createAt": "2023-04-29 21:22:17",
+        "updateAt": "2023-04-30 14:12:25"
+      },
+      {
+        "id": 2,
+        "idCompany": 2,
+        "name": "Lập trình viên Backend",
+        "tags": ["Java", "Node.js"],
+        "salary": 1700,
+        "description": "Xây dựng và duy trì backend cho các ứng dụng web.",
+        "status": true,
+        "city": ["Đà Nẵng"],
+        "createAt": "2023-04-29 21:22:17",
+        "updateAt": "2023-04-30 14:12:25"
+      }
+    ],
+    "cvs": [
+      {
+        "id": 1,
+        "idCompany": 1,
+        "idJob": 1,
+        "name": "Nguyễn Văn A",
+        "phone": "0912345678",
+        "email": "nguyenvana@gmail.com",
+        "description": "Tôi là một lập trình viên với hơn 3 năm kinh nghiệm.",
+        "linkProject": "https://github.com/nguyenvana/my-projects",
+        "city": "Hà Nội",
+        "statusRead": false,
+        "createAt": "2023-04-29 21:22:17"
+      },
+      {
+        "id": 2,
+        "idCompany": 2,
+        "idJob": 2,
+        "name": "Trần Thị B",
+        "phone": "0987654321",
+        "email": "tranthib@gmail.com",
+        "description": "Tôi có 5 năm kinh nghiệm làm lập trình backend.",
+        "linkProject": "https://github.com/tranthib/my-projects",
+        "city": "TP. Hồ Chí Minh",
+        "statusRead": true,
+        "createAt": "2023-04-29 21:22:17"
+      }
+    ]
+  }

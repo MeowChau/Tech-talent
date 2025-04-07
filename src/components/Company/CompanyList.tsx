@@ -3,7 +3,12 @@ import { fetchCompanies } from '../../api/api';
 import { Link } from 'react-router-dom';
 
 const CompanyList: React.FC = () => {
-    const [companies, setCompanies] = useState([]);
+    interface Company {
+        id: number;
+        companyName: string;
+    }
+
+    const [companies, setCompanies] = useState<Company[]>([]);
 
     useEffect(() => {
         const loadCompanies = async () => {

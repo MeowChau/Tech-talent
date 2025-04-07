@@ -10,6 +10,10 @@ const JobDetails: React.FC = () => {
     
     useEffect(() => {
         const loadJob = async () => {
+            if (!id) {
+                console.error("Job ID is undefined");
+                return;
+            }
             const jobData = await fetchJobById(id);
             setJob(jobData);
         };
