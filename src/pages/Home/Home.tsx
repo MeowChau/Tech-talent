@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, Button } from 'antd';
-import { CloudOutlined, LockOutlined, RobotOutlined, ApiOutlined, RadarChartOutlined, CodeOutlined, DatabaseOutlined, GatewayOutlined, RocketOutlined, ArrowRightOutlined } from '@ant-design/icons';
+import { CloudOutlined, LockOutlined, RobotOutlined, ApiOutlined, RadarChartOutlined, CodeOutlined, DatabaseOutlined, GatewayOutlined, RocketOutlined, ArrowRightOutlined, TeamOutlined, SolutionOutlined } from '@ant-design/icons';
 import { motion } from 'framer-motion';
 
 const { Title } = Typography;
@@ -110,6 +110,53 @@ const Home: React.FC = () => {
                         {item.label}
                     </Button>
                 ))}
+            </div>
+
+            {/* Phần mới: Tech Talent là gì? */}
+            <div style={{ display: 'flex', marginTop: '40px', gap: '20px', alignItems: 'flex-start' }}>
+                {/* Bên trái */}
+                <div style={{ flex: 1, textAlign: 'left' }}>
+                    <Title level={2} style={{ color: '#FF6600' }}>Tech Talent là gì?</Title>
+                    <p style={{ fontSize: '16px', lineHeight: '1.5', color: '#333' }}>
+                        Tech Talent là sáng kiến đào tạo chuyên sâu do đội ngũ chuyên gia dày dạn kinh nghiệm thiết kế, nhằm đồng hành cùng thế hệ trẻ trong hành trình khám phá năng lực bản thân và hoàn thiện trình độ chuyên môn. Chương trình tập trung vào 9 mũi nhọn công nghệ: Thiết kế vi mạch (Semiconductor), Hàng không vũ trụ (Aerospace), An ninh mạng (Cyber Security), Khoa học dữ liệu & Trí tuệ nhân tạo (Data Science & AI), Kỹ thuật dữ liệu (Data Engineering), Kỹ thuật phần mềm (Software Engineering), Điện toán đám mây (Cloud), Mạng 5G và Vạn vật kết nối (IoT), mang đến lộ trình phát triển toàn diện cho các tài năng kỹ thuật trẻ.
+                    </p>
+                    <p style={{ fontSize: '16px', lineHeight: '1.5', color: '#333', marginTop: '20px' }}>
+                        Đến với Tech Talent, các tài năng trẻ có cơ hội:
+                    </p>
+                </div>
+
+                {/* Bên phải */}
+                <div style={{ flex: 1, display: 'grid', gridTemplateColumns: '1fr', gap: '20px', marginTop: '40px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '10px', border: '1px solid #FF6600', borderRadius: '8px' }}>
+                        <RocketOutlined style={{ fontSize: '24px', color: '#FF6600' }} />
+                        <p style={{ fontSize: '14px', color: '#333', margin: 0 }}>
+                            Trải nghiệm lộ trình đào tạo chuyên sâu, đồng hành cùng đội ngũ cố vấn giàu kinh nghiệm từ Tech và quốc tế.
+                        </p>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '10px', border: '1px solid #FF6600', borderRadius: '8px' }}>
+                        <CodeOutlined style={{ fontSize: '24px', color: '#FF6600' }} />
+                        <p style={{ fontSize: '14px', color: '#333', margin: 0 }}>
+                            Tự tin ứng dụng lý thuyết vào thực tế thông qua các dự án đa lĩnh vực.
+                        </p>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '10px', border: '1px solid #FF6600', borderRadius: '8px' }}>
+                        <TeamOutlined style={{ fontSize: '24px', color: '#FF6600' }} />
+                        <p style={{ fontSize: '14px', color: '#333', margin: 0 }}>
+                            Mở rộng network chất lượng với cộng đồng tài năng trẻ, kết nối cùng các chuyên gia dày dạn kinh nghiệm.
+                        </p>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '10px', border: '1px solid #FF6600', borderRadius: '8px' }}>
+                        <SolutionOutlined style={{ fontSize: '24px', color: '#FF6600' }} />
+                        <p style={{ fontSize: '14px', color: '#333', margin: 0 }}>
+                            Tích lũy kinh nghiệm thực tế và có cơ hội “ghi tên” vào đội ngũ nhân sự chính thức của Tech ngay từ khi trên giảng đường.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            {/* Timeline */}
+            <div style={{ textAlign: 'center', marginTop: '40px' }}>
+                <Title level={2} style={{ color: '#FF6600', fontWeight: 'bold' }}>Timeline</Title>
             </div>
         </div>
     );
