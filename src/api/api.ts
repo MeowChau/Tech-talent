@@ -1,45 +1,67 @@
+// src/api/api.ts
 import axios from 'axios';
+import { Job } from '../models/Job';
+import { Company } from '../models/Company';
+import { CV } from '../models/CV';
 
-const BASE_URL = 'http://localhost:3001'; // URL cho json-server
+const BASE_URL = 'http://localhost:3001';
 
-// Hàm lấy danh sách công ty
-export const fetchCompanies = async () => {
-    const response = await axios.get(`${BASE_URL}/companies`);
-    return response.data; // Trả về dữ liệu danh sách công ty
-};
-
-// Hàm lấy danh sách công việc
+// Job Services
 export const fetchJobs = async () => {
-    const response = await axios.get(`${BASE_URL}/jobs`);
-    return response.data; // Trả về dữ liệu danh sách công việc
+    const response = await axios.get<Job[]>(`${BASE_URL}/jobs`);
+    return response.data;
 };
 
-// Hàm lấy chi tiết công việc theo ID
 export const fetchJobById = async (id: string) => {
-    const response = await axios.get(`${BASE_URL}/jobs/${id}`);
-    return response.data; // Trả về chi tiết công việc theo ID
+    const response = await axios.get<Job>(`${BASE_URL}/jobs/${id}`);
+    return response.data;
 };
 
-// Hàm lấy chi tiết công ty theo ID
+export const createJob = async (job: Job) => {
+    const response = await axios.post<Job>(`${BASE_URL}/jobs`, job);
+    return response.data;
+};
+
+export const updateJob = async (id: string, job: Job) => {
+    const response = await axios.put<Job>(`${BASE_URL}/jobs/${id}`, job);
+    return response.data;
+};
+
+export const deleteJob = async (id: string) => {
+    await axios.delete(`${BASE_URL}/jobs/${id}`);
+};
+
+// Company Services
+export const fetchCompanies = async () => {
+    const response = await axios.get<Company[]>(`${BASE_URL}/companies`);
+    return response.data;
+};
+
 export const fetchCompanyById = async (id: string) => {
-    const response = await axios.get(`${BASE_URL}/companies/${id}`);
-    return response.data; // Trả về chi tiết công ty theo ID
-};
-
-// Hàm lấy danh sách thành phố
-export const fetchCities = async () => {
-    const response = await axios.get(`${BASE_URL}/cities`);
+    const response = await axios.get<Company>(`${BASE_URL}/companies/${id}`);
     return response.data;
 };
 
-// Hàm lấy danh sách thẻ ngôn ngữ
-export const fetchTags = async () => {
-    const response = await axios.get(`${BASE_URL}/tags`);
-    return response.data;
-};
-
-// Hàm lấy danh sách CV
+// CV Services
 export const fetchCVs = async () => {
-    const response = await axios.get(`${BASE_URL}/cvs`);
+    const response = await axios.get<CV[]>(`${BASE_URL}/cvs`);
     return response.data;
+};
+
+export const fetchCVById = async (id: string) => {
+    const response = await axios.get<CV>(`${BASE_URL}/cvs/${id}`);
+    return response.data;
+};
+
+export const createCV = async (cv: CV) => {
+    const response = await axios.post<CV>(`${BASE_URL}/cvs`, cv);
+    return response.data;
+};
+
+export const updateCVStatus = async (id: string) => {
+    await axios.patch(`${BASE_URL}/cvs/${id}`, { statusRead: true });
+};
+
+export const deleteCV = async (id: string) => {
+    await axios.delete(`${BASE_URL}/cvs/${id}`);
 };
