@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, Button } from 'antd';
-import { LaptopOutlined } from '@ant-design/icons'; // Import icon máy tính
+import { LaptopOutlined } from '@ant-design/icons';
 
 const Navbar: React.FC = () => {
     return (
@@ -21,11 +21,11 @@ const Navbar: React.FC = () => {
                 style={{
                     fontSize: '16px',
                     fontWeight: 'bold',
-                    backgroundColor: '#FF6600', // Màu cam
+                    backgroundColor: '#FF6600',
                     borderBottom: 'none',
                     display: 'flex',
                     justifyContent: 'center',
-                    flex: 1, // Đẩy menu ra giữa
+                    flex: 1,
                 }}
             >
                 <Menu.Item key="home">
@@ -38,14 +38,14 @@ const Navbar: React.FC = () => {
                     <Link to="/jobs" style={{ color: '#fff' }}>Tuyển Dụng</Link>
                 </Menu.Item>
                 <Menu.Item key="contact">
-                    <Link to="/contact" style={{ color: '#fff' }}>Liên Hệ</Link>
+                    <Link to="/contact" style={{ color: '#fff' }}>Liên Hệ</Link> {/* Điều hướng đến trang "Liên hệ" */}
                 </Menu.Item>
             </Menu>
 
             {/* Nút bên phải */}
             <div>
                 <Button type="default" style={{ marginRight: '10px' }}>
-                    <Link to="/candidate/login" style={{ color: '#000' }}>Ứng Viên</Link> {/* Điều hướng đúng đến CandidateLogin */}
+                    <Link to="/candidate/login" style={{ color: '#000' }}>Ứng Viên</Link>
                 </Button>
                 <Button type="primary">
                     <Link to="/admin/login" style={{ color: '#fff' }}>Quản Trị Viên</Link>

@@ -5,7 +5,8 @@ import Footer from './components/layout/Footer';
 import Home from './pages/Home/Home';
 import AboutUs from './pages/About/AboutUs';
 import CandidateLogin from './pages/Auth/CandidateLogin';
-import JobList from './pages/Job/JobList'; // Import trang "Tuyển Dụng"
+import JobList from './pages/Job/JobList';
+import Contact from './pages/Contact/Contact'; // Import trang "Liên hệ"
 
 const App: React.FC = () => {
     return (
@@ -15,7 +16,8 @@ const App: React.FC = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<AboutUs />} />
                 <Route path="/candidate/login" element={<CandidateLogin />} />
-                <Route path="/jobs" element={<JobList />} /> {/* Route cho trang "Tuyển Dụng" */}
+                <Route path="/jobs" element={<JobList />} />
+                <Route path="/contact" element={<Contact />} /> {/* Route cho trang "Liên hệ" */}
             </Routes>
             <Footer />
         </Router>
