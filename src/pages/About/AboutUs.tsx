@@ -123,6 +123,52 @@ const AboutUs: React.FC = () => {
                     <HeartOutlined style={{ fontSize: '50px', color: '#FF6600' }} />
                 </div>
             </div>
+
+            {/* Dòng chữ "Đơn vị thành viên" */}
+            <h2 style={{ 
+                marginTop: '40px', 
+                fontSize: '24px', 
+                fontWeight: 'bold', 
+                color: '#fff', 
+                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)' // Hiệu ứng đổ bóng chữ
+            }}>
+                Đơn vị thành viên
+            </h2>
+
+            {/* 10 ô nội dung */}
+            <div style={{ 
+                display: 'grid', 
+                gridTemplateColumns: 'repeat(5, 1fr)', 
+                gap: '20px', 
+                marginTop: '20px' 
+            }}>
+                {['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'].map((item, index) => (
+                    <div key={index} style={{
+                        width: '100%',
+                        height: '100px',
+                        backgroundColor: '#ddd',
+                        borderRadius: '8px',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        fontSize: '20px',
+                        fontWeight: 'bold',
+                        color: 'transparent', // Mất màu mặc định
+                        transition: 'color 0.3s ease, background-color 0.3s ease',
+                        cursor: 'pointer',
+                    }}
+                    onMouseEnter={(e) => {
+                        e.currentTarget.style.color = '#FF6600'; // Hiện màu cam khi hover
+                        e.currentTarget.style.backgroundColor = '#fff';
+                    }}
+                    onMouseLeave={(e) => {
+                        e.currentTarget.style.color = 'transparent'; // Mất màu khi rời chuột
+                        e.currentTarget.style.backgroundColor = '#ddd';
+                    }}>
+                        {item.toUpperCase()}
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };
