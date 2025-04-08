@@ -24,18 +24,26 @@ const CandidateLogin: React.FC = () => {
     const { register, handleSubmit } = useForm<FormValues>();
     const navigate = useNavigate(); // Khởi tạo useNavigate
 
-    const onSubmit = async (data: FormValues) => {
-        try {
-            if (data.email === "candidate@example.com" && data.password === "password123") {
-                notification.success({ message: 'Đăng Nhập Thành Công!' });
-                window.location.href = '/candidate/dashboard';
+    const onSubmit = (data: FormValues) => {
+        const storedUser = localStorage.getItem('user'); // Lấy thông tin từ localStorage
+        if (storedUser) {
+            const user = JSON.parse(storedUser);
+            if (user.email === data.email && user.password === data.password) {
+                notification.success({
+                    message: 'Đăng nhập thành công!',
+                    description: 'Chào mừng bạn quay lại!',
+                });
+                navigate('/'); // Điều hướng đến trang chính
             } else {
-                throw new Error("Thông tin đăng nhập không chính xác!");
+                notification.error({
+                    message: 'Đăng nhập thất bại!',
+                    description: 'Email hoặc mật khẩu không đúng. Vui lòng thử lại.',
+                });
             }
-        } catch (error) {
-            notification.error({ 
-                message: 'Đăng Nhập Thất Bại!', 
-                description: error instanceof Error ? error.message : 'Đã xảy ra lỗi không xác định!' 
+        } else {
+            notification.error({
+                message: 'Đăng nhập thất bại!',
+                description: 'Không tìm thấy tài khoản. Vui lòng đăng ký trước.',
             });
         }
     };

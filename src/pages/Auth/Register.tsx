@@ -1,21 +1,23 @@
 import React from 'react';
-import { Form, Input, Button, Typography, Select, notification } from 'antd';
+import { Form, Input, Button, Typography, notification } from 'antd';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const { Title } = Typography;
-const { Option } = Select;
 
 const Register: React.FC = () => {
     const [form] = Form.useForm();
+    const navigate = useNavigate(); // Khởi tạo useNavigate
 
     const handleRegister = async (values: any) => {
         try {
-            // Giả lập gọi API đăng ký
-            console.log('Thông tin đăng ký:', values);
+            // Lưu thông tin đăng ký vào localStorage
+            localStorage.setItem('user', JSON.stringify(values));
             notification.success({
                 message: 'Đăng ký thành công!',
                 description: 'Tài khoản của bạn đã được tạo thành công.',
             });
             form.resetFields(); // Reset form sau khi đăng ký thành công
+            navigate('/candidate/login'); // Điều hướng đến giao diện đăng nhập
         } catch (error) {
             notification.error({
                 message: 'Đăng ký thất bại!',
@@ -48,6 +50,10 @@ const Register: React.FC = () => {
                         rules={[
                             { required: true, message: 'Vui lòng nhập email!' },
                             { type: 'email', message: 'Email không hợp lệ!' },
+                            {
+                                pattern: /.+@.+\.com$/,
+                                message: 'Email không đúng hợp lệ ',
+                            },
                         ]}
                     >
                         <Input placeholder="Nhập email của bạn" />
@@ -55,7 +61,13 @@ const Register: React.FC = () => {
                     <Form.Item
                         label="Mật khẩu"
                         name="password"
-                        rules={[{ required: true, message: 'Vui lòng nhập mật khẩu!' }]}
+                        rules={[
+                            { required: true, message: 'Vui lòng nhập mật khẩu!' },
+                            {
+                                pattern: /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{9,}$/,
+                                message: 'Mật khẩu phải dài hơn 8 ký tự, có ít nhất 1 chữ cái viết hoa và 1 số!',
+                            },
+                        ]}
                     >
                         <Input.Password placeholder="Nhập mật khẩu của bạn" />
                     </Form.Item>
@@ -82,20 +94,10 @@ const Register: React.FC = () => {
                         name="phone"
                         rules={[
                             { required: true, message: 'Vui lòng nhập số điện thoại!' },
-                            { pattern: /^[0-9]{10,11}$/, message: 'Số điện thoại không hợp lệ!' },
+                            { pattern: /^[0-9]{10}$/, message: 'Số điện thoại phải đúng và đủ 10 số!' },
                         ]}
                     >
                         <Input placeholder="Nhập số điện thoại của bạn" />
-                    </Form.Item>
-                    <Form.Item
-                        label="Vai trò"
-                        name="role"
-                        rules={[{ required: true, message: 'Vui lòng chọn vai trò!' }]}
-                    >
-                        <Select placeholder="Chọn vai trò của bạn">
-                            <Option value="candidate">Ứng viên</Option>
-                            <Option value="employer">Nhà tuyển dụng</Option>
-                        </Select>
                     </Form.Item>
                     <Form.Item>
                         <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
