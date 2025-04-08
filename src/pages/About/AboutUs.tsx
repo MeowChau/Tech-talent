@@ -153,7 +153,7 @@ const AboutUs: React.FC = () => {
                         alignItems: 'center',
                         fontSize: '20px',
                         fontWeight: 'bold',
-                        color: 'transparent', // Mất màu mặc định
+                        color: '#aaa', // Màu xám mặc định
                         transition: 'color 0.3s ease, background-color 0.3s ease',
                         cursor: 'pointer',
                     }}
@@ -162,7 +162,7 @@ const AboutUs: React.FC = () => {
                         e.currentTarget.style.backgroundColor = '#fff';
                     }}
                     onMouseLeave={(e) => {
-                        e.currentTarget.style.color = 'transparent'; // Mất màu khi rời chuột
+                        e.currentTarget.style.color = '#aaa'; // Màu xám khi rời chuột
                         e.currentTarget.style.backgroundColor = '#ddd';
                     }}>
                         {item.toUpperCase()}
