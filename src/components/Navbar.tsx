@@ -8,8 +8,10 @@ const Navbar: React.FC = () => {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#FF6600', padding: '0 20px' }}>
             {/* Logo và tên */}
             <div style={{ display: 'flex', alignItems: 'center' }}>
-                <LaptopOutlined style={{ fontSize: '24px', color: '#fff', marginRight: '10px' }} />
-                <span style={{ color: '#fff', fontSize: '20px', fontWeight: 'bold' }}>Tech_Talent</span>
+                <Link to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+                    <LaptopOutlined style={{ fontSize: '24px', color: '#fff', marginRight: '10px' }} />
+                    <span style={{ color: '#fff', fontSize: '20px', fontWeight: 'bold' }}>Tech_Talent</span>
+                </Link>
             </div>
 
             {/* Menu chính */}
@@ -43,7 +45,7 @@ const Navbar: React.FC = () => {
             {/* Nút bên phải */}
             <div>
                 <Button type="default" style={{ marginRight: '10px' }}>
-                    <Link to="/candidate">Ứng Viên</Link>
+                    <Link to="/candidate/login" style={{ color: '#000' }}>Ứng Viên</Link> {/* Điều hướng đúng đến CandidateLogin */}
                 </Button>
                 <Button type="primary">
                     <Link to="/admin/login" style={{ color: '#fff' }}>Quản Trị Viên</Link>
