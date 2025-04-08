@@ -1,12 +1,19 @@
 import React from 'react';
-import { Typography } from 'antd';
+import { Typography, Form, Input, Button } from 'antd';
 import { MessageOutlined } from '@ant-design/icons';
 
 const { Title, Text } = Typography;
 
 const Contact: React.FC = () => {
+    const [form] = Form.useForm();
+
+    const handleSubmit = (values: any) => {
+        console.log('Thông tin gửi đi:', values);
+        form.resetFields(); // Reset form sau khi gửi
+    };
+
     return (
-        <div style={{ display: 'flex', height: '100vh' }}>
+        <div style={{ display: 'flex', height: '100vh', fontFamily: "'Lexend', sans-serif" }}>
             {/* Phần bên trái */}
             <div
                 style={{
@@ -54,24 +61,69 @@ const Contact: React.FC = () => {
             <div
                 style={{
                     flex: 2,
-                    padding: '40px',
-                    backgroundColor: '#fff',
                     display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
+                    justifyContent: 'center', // Căn giữa theo chiều ngang
+                    alignItems: 'center', // Căn giữa theo chiều dọc
+                    backgroundColor: '#fff',
+                    padding: '40px',
                 }}
             >
-                <Title level={4} style={{ color: '#333', marginBottom: '20px' }}>
-                    Liên hệ với chúng tôi
-                </Title>
-                <p style={{ fontSize: '16px', lineHeight: '1.5', color: '#666' }}>
-                    Nếu bạn có bất kỳ câu hỏi nào hoặc cần hỗ trợ, vui lòng liên hệ với chúng tôi qua các kênh sau:
-                </p>
-                <ul style={{ marginTop: '20px', paddingLeft: '20px', color: '#333' }}>
-                    <li>Email: support@techtalent.com</li>
-                    <li>Hotline: 0123 456 789</li>
-                    <li>Địa chỉ: 123 Đường ABC, Hà Nội</li>
-                </ul>
+                <div style={{ width: '100%', maxWidth: '500px' }}>
+                    <Title level={4} style={{ color: '#333', marginBottom: '20px', textAlign: 'center' }}>
+                        Liên hệ với chúng tôi
+                    </Title>
+                    <Form
+                        form={form}
+                        layout="vertical"
+                        onFinish={handleSubmit}
+                        style={{
+                            backgroundColor: '#f9f9f9',
+                            padding: '20px',
+                            borderRadius: '8px',
+                            boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
+                        }}
+                    >
+                        <Form.Item
+                            label="Họ và Tên"
+                            name="fullName"
+                            rules={[{ required: true, message: 'Vui lòng nhập họ và tên!' }]}
+                        >
+                            <Input placeholder="Nhập họ và tên của bạn" />
+                        </Form.Item>
+                        <Form.Item
+                            label="Email"
+                            name="email"
+                            rules={[
+                                { required: true, message: 'Vui lòng nhập email!' },
+                                { type: 'email', message: 'Email không hợp lệ!' },
+                            ]}
+                        >
+                            <Input placeholder="Nhập email của bạn" />
+                        </Form.Item>
+                        <Form.Item
+                            label="Số điện thoại"
+                            name="phone"
+                            rules={[
+                                { required: true, message: 'Vui lòng nhập số điện thoại!' },
+                                { pattern: /^[0-9]{10,11}$/, message: 'Số điện thoại không hợp lệ!' },
+                            ]}
+                        >
+                            <Input placeholder="Nhập số điện thoại của bạn" />
+                        </Form.Item>
+                        <Form.Item
+                            label="Nội dung"
+                            name="message"
+                            rules={[{ required: true, message: 'Vui lòng nhập nội dung!' }]}
+                        >
+                            <Input.TextArea rows={4} placeholder="Nhập nội dung bạn muốn gửi" />
+                        </Form.Item>
+                        <Form.Item>
+                            <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
+                                Gửi thông tin
+                            </Button>
+                        </Form.Item>
+                    </Form>
+                </div>
             </div>
         </div>
     );

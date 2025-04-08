@@ -1,16 +1,10 @@
 import React from 'react';
 import { Row, Col } from 'antd';
 import JobCard from './JobCard';
-
-interface Job {
-    id: number;
-    title: string;
-    unit: string;
-    area: string;
-}
+import { Job } from '../../models/Job'; // Import kiểu Job
 
 interface JobListContentProps {
-    jobs: Job[];
+    jobs: Job[]; // Đảm bảo kiểu dữ liệu là Job[]
 }
 
 const JobListContent: React.FC<JobListContentProps> = ({ jobs }) => {
@@ -19,10 +13,11 @@ const JobListContent: React.FC<JobListContentProps> = ({ jobs }) => {
             {jobs.map((job) => (
                 <Col key={job.id} xs={24} sm={12} md={8}>
                     <JobCard
-                        title={job.title}
+                        id={job.id}
+                        title={job.name}
                         unit={job.unit}
-                        area={job.area}
-                        deadline="31/12/2025"
+                        area={job.city.join(', ')}
+                        deadline={job.deadline}
                     />
                 </Col>
             ))}

@@ -10,15 +10,15 @@ const JobList: React.FC = () => {
     const [selectedAreas, setSelectedAreas] = useState<string[]>([]);
 
     const jobs = [
-        { id: 1, title: 'Cloud', unit: 'Tổng Công ty Giải pháp', area: 'TP HCM' },
-        { id: 2, title: 'Cyber Security', unit: 'Tổng Công ty Giải pháp', area: 'TP HCM' },
-        { id: 3, title: 'AI', unit: 'Tổng Công ty Giải pháp', area: 'TP HCM' },
-        { id: 4, title: 'Semiconductor', unit: 'Tổng Công ty Công nghệ', area: 'Hà Nội' },
-        { id: 5, title: '5G', unit: 'Tổng Công ty Công nghệ', area: 'Hà Nội' },
-        { id: 6, title: 'Software Engineering', unit: 'Tổng Công ty Công nghệ', area: 'Hà Nội' },
-        { id: 7, title: 'Data Engineering', unit: 'Tổng Công ty Đầu tư', area: 'Ninh Bình' },
-        { id: 8, title: 'IoT', unit: 'Tổng Công ty Đầu tư', area: 'Ninh Bình' },
-        { id: 9, title: 'Aerospace', unit: 'Tổng Công ty Đầu tư', area: 'Ninh Bình' },
+        { id: '1', title: 'Cloud', unit: 'Tổng Công ty Giải pháp', area: 'TP HCM', deadline: '2025-12-31', name: 'Cloud Engineer', city: ['Ho Chi Minh City'] },
+        { id: '2', title: 'Cyber Security', unit: 'Tổng Công ty Giải pháp', area: 'TP HCM', deadline: '2025-12-31', name: 'Cyber Security Specialist', city: ['Ho Chi Minh City'] },
+        { id: '3', title: 'AI', unit: 'Tổng Công ty Giải pháp', area: 'TP HCM', deadline: '2025-12-31', name: 'AI Researcher', city: ['Ho Chi Minh City'] },
+        { id: '4', title: 'Semiconductor', unit: 'Tổng Công ty Công nghệ', area: 'Hà Nội', deadline: '2025-12-31', name: 'Semiconductor Engineer', city: ['Hanoi'] },
+        { id: '5', title: '5G', unit: 'Tổng Công ty Công nghệ', area: 'Hà Nội', deadline: '2025-12-31', name: '5G Specialist', city: ['Hanoi'] },
+        { id: '6', title: 'Software Engineering', unit: 'Tổng Công ty Công nghệ', area: 'Hà Nội', deadline: '2025-12-31', name: 'Software Engineer', city: ['Hanoi'] },
+        { id: '7', title: 'Data Engineering', unit: 'Tổng Công ty Đầu tư', area: 'Ninh Bình', deadline: '2025-12-31', name: 'Data Engineer', city: ['Ninh Binh'] },
+        { id: '8', title: 'IoT', unit: 'Tổng Công ty Đầu tư', area: 'Ninh Bình', deadline: '2025-12-31', name: 'IoT Specialist', city: ['Ninh Binh'] },
+        { id: '9', title: 'Aerospace', unit: 'Tổng Công ty Đầu tư', area: 'Ninh Bình', deadline: '2025-12-31', name: 'Aerospace Engineer', city: ['Ninh Binh'] },
     ];
 
     const filteredJobs = jobs.filter((job) => {

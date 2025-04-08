@@ -1,17 +1,25 @@
 import React from 'react';
 import { Card, Typography, Button } from 'antd';
 import { RightOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 
 const { Title, Text } = Typography;
 
 interface JobCardProps {
+    id: string;
     title: string;
     unit: string;
     area: string;
     deadline: string;
 }
 
-const JobCard: React.FC<JobCardProps> = ({ title, unit, area, deadline }) => {
+const JobCard: React.FC<JobCardProps> = ({ id, title, unit, area, deadline }) => {
+    const navigate = useNavigate();
+
+    const handleViewDetails = () => {
+        navigate(`/jobs/${id}`); // Điều hướng đến trang chi tiết công việc
+    };
+
     return (
         <Card
             hoverable
@@ -42,7 +50,7 @@ const JobCard: React.FC<JobCardProps> = ({ title, unit, area, deadline }) => {
                 </Text>
             </div>
             <div style={{ marginTop: 'auto' }}>
-                <Button type="link" icon={<RightOutlined />}>
+                <Button type="link" icon={<RightOutlined />} onClick={handleViewDetails}>
                     Xem thêm
                 </Button>
             </div>
