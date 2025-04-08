@@ -116,7 +116,10 @@ const CandidateLogin: React.FC = () => {
                     borderRadius: '8px', 
                     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' 
                 }}>
-                    <h2 style={{ textAlign: 'center', color: '#FF6600' }}>Đăng Nhập Ứng Viên</h2>
+                    <h2 style={{ textAlign: 'center', color: '#FF6600' }}>Chào mừng</h2>
+                    <p style={{ textAlign: 'center', color: '#666', marginBottom: '20px' }}>
+                        Hãy đăng nhập để trải nghiệm cùng chúng tôi
+                    </p>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <Input 
                             placeholder="Email" 
@@ -128,8 +131,33 @@ const CandidateLogin: React.FC = () => {
                             {...register('password', { required: true })} 
                             style={{ marginBottom: '10px' }} 
                         />
-                        <Button type="primary" htmlType="submit" style={{ width: '100%' }}>Đăng Nhập</Button>
+                        <Button 
+                            type="primary" 
+                            htmlType="submit" 
+                            style={{ 
+                                width: '100%', 
+                                backgroundColor: '#FF6600', 
+                                borderColor: '#FF6600' 
+                            }}
+                        >
+                            Đăng Nhập
+                        </Button>
                     </form>
+                    <p style={{ textAlign: 'center', marginTop: '10px', color: '#FF6600', cursor: 'pointer' }}>
+                        Bạn quên mật khẩu?
+                    </p>
+                    <hr style={{ margin: '20px 0', borderColor: '#ddd' }} />
+                    <Button 
+                        type="default" 
+                        style={{ 
+                            width: '100%', 
+                            backgroundColor: '#fff', 
+                            borderColor: '#FF6600', 
+                            color: '#FF6600' 
+                        }}
+                    >
+                        Đăng ký tài khoản
+                    </Button>
                 </div>
             </div>
         </div>
