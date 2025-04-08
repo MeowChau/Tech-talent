@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Input, Button, Typography, notification } from 'antd';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import './Register.css'; // Import file CSS
 
 const { Title } = Typography;
 
@@ -27,8 +28,16 @@ const Register: React.FC = () => {
     };
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#f9f9f9' }}>
-            <div style={{ width: '100%', maxWidth: '500px', backgroundColor: '#fff', padding: '30px', borderRadius: '8px', boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)' }}>
+        <div className="register-container">
+            {/* Hiệu ứng nền lục giác */}
+            <div className="hexagon-background">
+                {Array.from({ length: 100 }).map((_, index) => (
+                    <div key={index} className="hexagon"></div>
+                ))}
+            </div>
+
+            {/* Form đăng ký */}
+            <div className="register-form-container">
                 <Title level={3} style={{ textAlign: 'center', color: '#FF6600', marginBottom: '20px' }}>
                     Đăng Ký Tài Khoản
                 </Title>

@@ -28,7 +28,7 @@ const CandidateLogin: React.FC = () => {
         const storedUser = localStorage.getItem('user'); // Lấy thông tin từ localStorage
         if (storedUser) {
             const user = JSON.parse(storedUser);
-            if (user.email === data.email && user.password === data.password) {
+            if (user.email.trim() === data.email.trim() && user.password === data.password) {
                 notification.success({
                     message: 'Đăng nhập thành công!',
                     description: 'Chào mừng bạn quay lại!',
