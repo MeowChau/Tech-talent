@@ -40,7 +40,7 @@ const JobDetails: React.FC = () => {
     return (
         <div style={{ padding: '40px', maxWidth: '800px', margin: '0 auto', backgroundColor: '#fff', borderRadius: '8px', boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)' }}>
             <Title level={2} style={{ color: '#333' }}>
-                Phát triển phần mềm - Kỹ sư Phát triển phần mềm
+                {job.name} - {job.unit}
             </Title>
             <Paragraph><strong>Mức lương:</strong> {job.salary} USD</Paragraph>
             <Paragraph><strong>Thành phố:</strong> {job.city.join(', ')}</Paragraph>

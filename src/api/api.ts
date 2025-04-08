@@ -39,10 +39,7 @@ export const fetchJobs = async (): Promise<Job[]> => {
     return response.data;
 };
 
-export const fetchJobById = async (id: string): Promise<Job> => {
-    const response = await api.get(`/jobs/${id}`);
-    return response.data;
-};
+// Duplicate declaration of fetchJobById removed
 
 export const createJob = async (job: Job): Promise<Job> => {
     const response = await api.post('/jobs', job);
@@ -92,6 +89,9 @@ export const updateCVStatus = async (id: string): Promise<void> => {
 export const deleteCV = async (id: string): Promise<void> => {
     await api.delete(`/cvs/${id}`);
 };
-
+export const fetchJobById = async (id: string): Promise<Job> => {
+    const response = await api.get(`/jobs/${id}`);
+    return response.data;
+};
 // Xuất khẩu tất cả để có thể sử dụng trong các module khác
 export default api;

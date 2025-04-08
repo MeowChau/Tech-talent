@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Input, Button, notification } from 'antd';
 import { motion } from 'framer-motion'; // Import framer-motion để tạo hiệu ứng
+import { useNavigate } from 'react-router-dom'; // Import useNavigate để điều hướng
 import {
     CloudOutlined,
     LockOutlined,
@@ -21,6 +22,7 @@ interface FormValues {
 
 const CandidateLogin: React.FC = () => {
     const { register, handleSubmit } = useForm<FormValues>();
+    const navigate = useNavigate(); // Khởi tạo useNavigate
 
     const onSubmit = async (data: FormValues) => {
         try {
@@ -155,6 +157,7 @@ const CandidateLogin: React.FC = () => {
                             borderColor: '#FF6600', 
                             color: '#FF6600' 
                         }}
+                        onClick={() => navigate('/register')} // Điều hướng đến trang đăng ký
                     >
                         Đăng ký tài khoản
                     </Button>

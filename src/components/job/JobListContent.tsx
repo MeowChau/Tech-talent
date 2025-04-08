@@ -1,10 +1,17 @@
 import React from 'react';
 import { Row, Col } from 'antd';
 import JobCard from './JobCard';
-import { Job } from '../../models/Job'; // Import kiểu Job
+
+interface Job {
+    id: string;
+    name: string;
+    unit: string;
+    city: string[];
+    deadline: string;
+}
 
 interface JobListContentProps {
-    jobs: Job[]; // Đảm bảo kiểu dữ liệu là Job[]
+    jobs: Job[];
 }
 
 const JobListContent: React.FC<JobListContentProps> = ({ jobs }) => {

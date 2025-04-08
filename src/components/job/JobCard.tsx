@@ -36,7 +36,7 @@ const JobCard: React.FC<JobCardProps> = ({ id, title, unit, area, deadline }) =>
             bodyStyle={{ padding: '20px' }}
         >
             <Title level={5} style={{ margin: 0 }}>
-                Tech_talent_{title}
+                {title}
             </Title>
             <div style={{ marginTop: '10px', marginBottom: '10px', textAlign: 'center' }}>
                 <Text style={{ color: '#888', display: 'block', marginBottom: '8px' }}>
