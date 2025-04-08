@@ -158,6 +158,54 @@ const Home: React.FC = () => {
             <div style={{ textAlign: 'center', marginTop: '40px' }}>
                 <Title level={2} style={{ color: '#FF6600', fontWeight: 'bold' }}>Timeline</Title>
             </div>
+            {/* Con dốc Timeline */}
+<div style={{ marginTop: '20px', position: 'relative', height: '250px' }}>
+    {/* Đường dốc */}
+    <motion.div
+        initial={{ width: 0 }}
+        animate={{ width: '100%' }}
+        transition={{ duration: 2, ease: 'easeInOut' }}
+        style={{
+            position: 'absolute',
+            top: '50%',
+            left: '0',
+            height: '4px',
+            background: 'linear-gradient(to right, #FF6600, transparent)',
+            transform: 'translateY(-50%) rotate(-5deg)',
+        }}
+    ></motion.div>
+
+    {/* Các giai đoạn */}
+    {['1. Tiếp nhận hồ sơ', '2. Kiểm tra năng lực', '3. Phỏng vấn hội đồng', '4. Đào tạo chuyên sâu', '5. Tham gia dự án thực tế'].map((stage, index) => (
+        <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.3 }}
+            style={{
+                position: 'absolute',
+                left: `${index * 20}%`,
+                bottom: index % 2 === 0 ? `${index * 10 + 20}px` : `${index * 10}px`, // Giai đoạn 2, 4 nằm trên
+                textAlign: 'center',
+            }}
+        >
+            {/* Vòng tròn */}
+            <motion.div
+                whileHover={{ scale: 1.2 }}
+                style={{
+                    width: '40px',
+                    height: '40px',
+                    backgroundColor: '#FF6600',
+                    borderRadius: '50%',
+                    margin: '0 auto',
+                    boxShadow: '0 4px 8px rgba(255, 102, 0, 0.5)',
+                }}
+            ></motion.div>
+            {/* Nhãn */}
+            <p style={{ marginTop: '10px', color: '#333', fontWeight: 'bold' }}>{stage}</p>
+        </motion.div>
+    ))}
+</div>
         </div>
     );
 };
